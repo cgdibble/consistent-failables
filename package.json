@@ -1,0 +1,29 @@
+{
+  "name": "consistent-failables",
+  "version": "1.0.5",
+  "description": "for the most consistent of failables",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "deploy": "./deploy.sh"
+  },
+  "author": "cgdibble",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0",
+    "ramda": "^0.22.1"
+  },
+  "devDependencies": {
+    "jest": "^18.0.0"
+  },
+  "jest": {
+    "verbose": false
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "only"
+    ]
+  }
+}
