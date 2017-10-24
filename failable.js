@@ -1,5 +1,6 @@
 const { reduce, pluck, map } = require('ramda')
 const co = require('co')
+const equal = require('assert').deepEqual
 
 function allTrue (collection) {
   return reduce((acc, item) => { return item && acc }, true, collection)
@@ -117,6 +118,19 @@ const failablePipe = (fns) => {
   })
 }
 
+const assertSuccess = (result, expectedPayload) => {
+  equal(isSuccess(result), true, JSON.stringify(result, true, 4))
+  if (expectedPayload === undefined) return
+  equal(result.payload, expectedPayload)
+}
+
+const assertFailure = (result, expectedFailure) => {
+  equal(isFailure(result), true, JSON.stringify(result, true, 4))
+  if (expectedFailure === undefined) return
+  equal(result.payload, expectedFailure)
+}
+
+const assertEmpty = (result) => equal(isEmpty(result), true, JSON.stringify(result, true, 4))
 module.exports = {
   anyFailed,
   firstFailure,

@@ -17,6 +17,30 @@ const { anyFailed,
 const equal = require('assert').deepEqual
 
 describe('failable.js', () => {
+  describe('assertSuccess', () => {
+    it('should fail if expected payload is present and does not match', () => {
+      const actual = success('bar')
+      try {
+        assertSuccess(actual, 'foo')
+      } catch (e) {
+        return
+      }
+      fail('wanted failure but got success')
+    })
+  })
+
+  describe('assertFailure', () => {
+    it('should fail if expected error is present and does not match', () => {
+      const actual = failure('bar')
+      try {
+        assertFailure(actual, 'foo')
+      } catch (e) {
+        return
+      }
+      fail('wanted success but got failure')
+    })
+  })
+
   describe('anyFailed', () => {
     it('should return true if there are any failures', () => {
       let l1 = [failure(), success()]
